@@ -271,7 +271,7 @@
     "silhouette_non_noise": 0.30259780454542945
   },
   "software": {
-    "scikit_learn": "1.6.1"
+    "scikit_learn": "1.9.0"
   },
   "interpretation_note": "Model gelecek tahmini yapmaz; illeri 2008–2025 göç davranışlarına göre benzer profillere ayırır."
 }
