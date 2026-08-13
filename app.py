@@ -45,7 +45,8 @@ st.markdown(
     .stApp { background:#F7F8FA; color:var(--navy); }
     [data-testid="stSidebar"] { background:#FFFFFF; border-right:1px solid var(--line); }
     [data-testid="stSidebar"] h1, [data-testid="stSidebar"] h2 { color:var(--navy); }
-    .block-container { max-width:1440px; padding-top:2rem; padding-bottom:3rem; }
+    /* Streamlit'in sabit üst araç çubuğu ilk satırı örtmesin. */
+    .block-container { max-width:1440px; padding-top:4.5rem; padding-bottom:3rem; }
     h1, h2, h3 { color:var(--navy); letter-spacing:-0.02em; }
     h1 { font-weight:760; }
     .atlas-subtitle { color:var(--muted); font-size:1.05rem; margin-top:-0.7rem; margin-bottom:1.8rem; }
@@ -69,7 +70,7 @@ st.markdown(
     .stButton > button:hover { background:#7D1728; color:white; border:0; }
     .stDownloadButton > button { border-color:#D0D5DD; color:var(--navy); border-radius:8px; font-weight:650; }
     @media (max-width: 700px) {
-        .block-container { padding:1.2rem .9rem 2rem; }
+        .block-container { padding:4rem .9rem 2rem; }
         .kpi-card { min-height:96px; padding:14px; }
         .kpi-value { font-size:1.25rem; }
     }
