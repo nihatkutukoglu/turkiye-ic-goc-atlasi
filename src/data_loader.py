@@ -1,36 +1,44 @@
-import pandas as pd
+"""Temizlenmiş proje tabloları için merkezi veri yükleyiciler."""
+
 from pathlib import Path
 
-def get_project_root() -> Path:
-    """Returns the project root folder."""
-    return Path(__file__).resolve().parent.parent
+import pandas as pd
 
-def load_migration_network() -> pd.DataFrame:
-    """Loads the main migration network dataset."""
-    root = get_project_root()
-    path = root / "data" / "processed" / "iller_arasi_goc.csv"
+from src.config import PROCESSED_DATA_DIR
+
+
+def _load_csv(filename: str, data_dir: Path = PROCESSED_DATA_DIR) -> pd.DataFrame:
+    path = data_dir / filename
+    if not path.exists():
+        raise FileNotFoundError(
+            f"{path} bulunamadı. Önce `python -m src.data_cleaning` çalıştırın."
+        )
     return pd.read_csv(path)
 
-def load_migration_summary() -> pd.DataFrame:
-    """Loads the migration summary by city dataset."""
-    root = get_project_root()
-    path = root / "data" / "processed" / "illerin_goc_ozeti.csv"
-    return pd.read_csv(path)
 
-def load_age_gender() -> pd.DataFrame:
-    """Loads the migration by age and gender dataset."""
-    root = get_project_root()
-    path = root / "data" / "processed" / "yas_cinsiyet_goc.csv"
-    return pd.read_csv(path)
+def load_migration_flows(data_dir: Path = PROCESSED_DATA_DIR) -> pd.DataFrame:
+    return _load_csv("iller_arasi_goc.csv", data_dir)
 
-def load_age_gender_reason() -> pd.DataFrame:
-    """Loads the migration by age, gender, and reason dataset."""
-    root = get_project_root()
-    path = root / "data" / "processed" / "yas_cinsiyet_neden.csv"
-    return pd.read_csv(path)
 
-def load_education_reason() -> pd.DataFrame:
-    """Loads the migration by education and reason dataset."""
-    root = get_project_root()
-    path = root / "data" / "processed" / "egitim_goc_nedeni.csv"
-    return pd.read_csv(path)
+def load_city_summary(data_dir: Path = PROCESSED_DATA_DIR) -> pd.DataFrame:
+    return _load_csv("illerin_goc_ozeti.csv", data_dir)
+
+
+def load_city_year_metrics(data_dir: Path = PROCESSED_DATA_DIR) -> pd.DataFrame:
+    return _load_csv("city_year_metrics.csv", data_dir)
+
+
+def load_age_gender(data_dir: Path = PROCESSED_DATA_DIR) -> pd.DataFrame:
+    return _load_csv("yas_cinsiyet_goc.csv", data_dir)
+
+
+def load_age_gender_reason(data_dir: Path = PROCESSED_DATA_DIR) -> pd.DataFrame:
+    return _load_csv("yas_cinsiyet_neden.csv", data_dir)
+
+
+def load_education_reason(data_dir: Path = PROCESSED_DATA_DIR) -> pd.DataFrame:
+    return _load_csv("egitim_goc_nedeni.csv", data_dir)
+
+
+def load_city_profiles(data_dir: Path = PROCESSED_DATA_DIR) -> pd.DataFrame:
+    return _load_csv("city_profiles.csv", data_dir)
